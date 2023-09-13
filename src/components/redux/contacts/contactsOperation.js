@@ -1,9 +1,43 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  addContactsApi,
-  getContactApi,
-  removeContactApi,
-} from '../firebaseUseApi';
+import axios from 'axios';
+
+export const addContacts = createAsyncThunk(
+  'contacts/addcontacts',
+  async (contacts, thunkAPI) => {
+    try {
+      const response = await axios.post('/contacts', contacts);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getContacts = createAsyncThunk(
+  'contacts/get',
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get('/contacts');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeContacts = createAsyncThunk(
+  'contacts/remove',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/contacts/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+/* import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const addContacts = createAsyncThunk(
   'contacts/add',
@@ -42,4 +76,4 @@ export const removeContacts = createAsyncThunk(
       return rejectWithValue(error.message);
     }
   }
-);
+); */

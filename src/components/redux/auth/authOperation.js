@@ -1,55 +1,69 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  getCurUserApi,
-  loginUserApi,
-  registerUserApi,
-} from '../firebaseUseApi';
-import { logOut } from './authSlice';
+import axios from 'axios';
 
-export const registerUser = createAsyncThunk(
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
+export const registerOperation = createAsyncThunk(
   'auth/register',
-  async (form, { rejectWithValue }) => {
+  async (Form, thunkAPI) => {
     try {
-      const userData = await registerUserApi(form);
-      return userData;
+      const res = await axios.post('/users/signup', Form);
+      token.set(res.data.token);
+      return res.data;
     } catch (error) {
-      return rejectWithValue(error.massege);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const loginUser = createAsyncThunk(
+export const logInOperation = createAsyncThunk(
   'auth/login',
   async (userForm, { rejectWithValue }) => {
     try {
-      const userData = await loginUserApi(userForm);
-      return userData;
+      const res = await axios.post('/users/login', userForm);
+      token.set(res.data.token);
+      return res.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-export const getCurUser = createAsyncThunk(
-  'auth/get/Cur/users',
-  async (_, { getState, rejectWithValue, dispatch }) => {
-    const { idToken } = getState().auth;
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
     try {
-      const data = await getCurUserApi(idToken);
-      return data;
+      await axios.post('/users/logout');
+      token.unset();
     } catch (error) {
-      setTimeout(() => {
-        dispatch(logOut());
-      }, 0);
       return rejectWithValue(error.message);
     }
-  },
-  {
-    condition(_, { getState }) {
-      const { idToken } = getState().auth;
-      return Boolean(idToken);
-    },
   }
 );
 
-// Boolean(idToken) ==>> приводимо рядок токена до буля
+export const refreshUserOperation = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      token.set(persistedToken);
+      const res = await axios.get('/users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

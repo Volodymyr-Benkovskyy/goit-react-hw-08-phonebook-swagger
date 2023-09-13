@@ -1,4 +1,4 @@
-//import ContactsBookPage from "components/pages/ContactsBookPage";
+
 import {  Route, Routes , Navigate} from "react-router-dom";
 
 import MainLayout from "components/MainLayout/MainLayout";
@@ -8,8 +8,9 @@ import RegisterPage from "components/pages/RegisterPage";
 import ContactsBookPage from "components/pages/ContactsBookPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCurUser } from "components/redux/auth/authOperation";
+import { refreshUserOperation } from "components/redux/auth/authOperation";
 import { selectIsAuth } from "components/redux/auth/authselector";
+
 
 
 const PrivateRoute = ({component, redirectTo = "/login"}) => {
@@ -19,22 +20,19 @@ const PrivateRoute = ({component, redirectTo = "/login"}) => {
 
 const PublicRoute = ({ component, redirectTo = "/" }) => {
   const isAuth = useSelector(selectIsAuth);
-
   return !isAuth ? component : <Navigate to={redirectTo} />;
 };
 
 const App = () => {
- // const isAuth = useSelector(selectIsAuth);
- 
   const dispatch = useDispatch();
-   useEffect(() => {
-    dispatch(getCurUser())
-   }, [dispatch]);
-  
-  
+
+  useEffect(() => {
+    dispatch(refreshUserOperation())
+  })
+
   return (
     <>
-    
+   
  <Routes>
         <Route path="/" element={<MainLayout />}>
           
@@ -48,27 +46,16 @@ const App = () => {
      </Route>
   <Route path="*" element={<Navigate to="/" />} /> 
 </Routes>
-    
     </>
   );
 };
 
 export default App;
   
-  //  <ContactsBookPage />
 
-        //    <Routes>
-        //   <Route path="/" element={<MainLayout />}>
-        //     <Route index element={<HomePage />} />
-        //     <Route path="/register" element={<RegisterPage />} />
-        //       <Route path="/login" element={<LoginPage />} />
-        //     {/*  <Route path="/contacts" element={<ContactsBookPage />} /> */}
-              
-        //      <Route path="*" element={<Navigate to="/login" />} /> 
-        //   </Route>
-        // </Routes> 
+      
 
        
         
 
-     
+     // created contactsOperation, authsOperation, authslice, 

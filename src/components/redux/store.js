@@ -19,7 +19,7 @@ const AuthpersistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whiteList: ['idToken'],
+  whiteList: ['Token'],
 };
 
 const persistAuthedReducer = persistReducer(AuthpersistConfig, authReducer);
@@ -39,6 +39,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// connection redux-persist, create function getCurUserApi, getCurUser
-// create function logOut

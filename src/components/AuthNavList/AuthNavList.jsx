@@ -1,16 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import css from './AuthNavList.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'components/redux/auth/authSlice';
-import { selectIsAuth } from 'components/redux/auth/authselector';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'components/redux/auth/authOperation';
+
 
 const AuthNavList = () => {
   const dispatch = useDispatch();
-   const isAuth = useSelector(selectIsAuth)
   return (
-<nav>
-  {!isAuth ? (
-    <>
+    <nav>
+   
       <NavLink className={css.link} to="/register">
         Register
       </NavLink>
@@ -18,15 +16,21 @@ const AuthNavList = () => {
       <NavLink className={css.link} to="/login">
         Log In
       </NavLink>
-    </>
-  ) : (
-    <NavLink className={css.link} onClick={() => dispatch(logOut())}>
+  
+ 
+      <NavLink className={css.link}
+        onClick={() => dispatch(logOut())}
+      >
+          
       Logout
-    </NavLink>
-  )}
+    </NavLink> 
+ 
 </nav>
     
-  );
+  )
+
+
+  
 };
 
 export default AuthNavList;
