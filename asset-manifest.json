@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-08-phonebook-swagger/static/css/main.1b875f08.css",
+    "main.js": "/goit-react-hw-08-phonebook-swagger/static/js/main.40f74616.js",
+    "index.html": "/goit-react-hw-08-phonebook-swagger/index.html",
+    "main.1b875f08.css.map": "/goit-react-hw-08-phonebook-swagger/static/css/main.1b875f08.css.map",
+    "main.40f74616.js.map": "/goit-react-hw-08-phonebook-swagger/static/js/main.40f74616.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b875f08.css",
+    "static/js/main.40f74616.js"
+  ]
+}
