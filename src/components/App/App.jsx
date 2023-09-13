@@ -13,6 +13,7 @@ import { selectIsAuth } from "components/redux/auth/authselector";
 
 
 
+
 const PrivateRoute = ({component, redirectTo = "/login"}) => {
   const isAuth = useSelector(selectIsAuth)
   return isAuth ? component : <Navigate to={redirectTo}/>
@@ -25,10 +26,11 @@ const PublicRoute = ({ component, redirectTo = "/" }) => {
 
 const App = () => {
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     dispatch(refreshUserOperation())
-  })
+  },[dispatch])
 
   return (
     <>
@@ -58,4 +60,4 @@ export default App;
        
         
 
-     // created contactsOperation, authsOperation, authslice, 
+     // fix method removeContacts, 

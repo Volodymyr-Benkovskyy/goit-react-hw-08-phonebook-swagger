@@ -3,13 +3,13 @@
 import s from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { getStoreContacts } from 'components/redux/contacts/selectors';
+import { selectorContactsItems } from 'components/redux/contacts/selectors';
 import {  addContacts } from 'components/redux/contacts/contactsOperation';
 
 
 const ContactForm = () => {
 
- const contacts = useSelector(getStoreContacts); 
+ const contacts = useSelector(selectorContactsItems); 
   const dispatch = useDispatch();
 
  const handleSubmit = event => {

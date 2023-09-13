@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContacts, getContacts, removeContacts } from './contactsOperation';
+import {
+  addContacts,
+  getContacts,
+  removeContacts,
+  updateContact,
+} from './contactsOperation';
 
 const initialState = {
   items: [],
@@ -20,6 +25,9 @@ const ContactsSlice = createSlice({
         state.items = payload;
       })
       .addCase(removeContacts.fulfilled, (state, { payload }) => {
+        state.items = state.items.filter(el => el.id !== payload);
+      })
+      .addCase(updateContact.fulfilled, (state, { payload }) => {
         state.items = state.items.filter(el => el.id !== payload);
       })
 
