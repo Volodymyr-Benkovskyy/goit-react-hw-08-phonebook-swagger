@@ -6,23 +6,14 @@ import HomePage from "components/pages/HomePage";
 import LoginPage from "components/pages/LoginPage";
 import RegisterPage from "components/pages/RegisterPage";
 import ContactsBookPage from "components/pages/ContactsBookPage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useEffect } from "react";
 import { refreshUserOperation } from "components/redux/auth/authOperation";
-import { selectIsAuth } from "components/redux/auth/authselector";
+//import { selectIsAuth } from "components/redux/auth/authselector";
+import PrivateRoute from "components/PrivateRoute/PrivetRoute";
+import PublicRoute from "components/PublicRoute/PublicRoute";
 
 
-
-
-const PrivateRoute = ({component, redirectTo = "/login"}) => {
-  const isAuth = useSelector(selectIsAuth)
-  return isAuth ? component : <Navigate to={redirectTo}/>
-}
-
-const PublicRoute = ({ component, redirectTo = "/" }) => {
-  const isAuth = useSelector(selectIsAuth);
-  return !isAuth ? component : <Navigate to={redirectTo} />;
-};
 
 const App = () => {
   const dispatch = useDispatch();
