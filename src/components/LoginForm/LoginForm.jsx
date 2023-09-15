@@ -1,12 +1,26 @@
+
 import { useDispatch } from "react-redux";
 import css from "./LoginForm.module.css";
 import { logInOperation } from "components/redux/auth/authOperation";
 import { useState } from "react";
 
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Button from '@mui/material/Button';
+
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
- const [form, setForm] = useState({
+   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = React.useState(false);
+  
+   const [form, setForm] = useState({
      email: "",
      password: "",
    });
@@ -22,34 +36,65 @@ const LoginForm = () => {
      console.log(form);
      dispatch(logInOperation(form))
     
-    };
+  };
+  
+    // Функція для відображення/приховування пароля
+  const handleClickShowPassword = () => setShowPassword(show => !show);
 
-     return (
-    <form className={css.form} onSubmit={handleSubmit} >
-      <label className={css.label}>
-        Email
-           <input
-             type="email"
-             name="email"
-             value={form.email}
-             onChange={handleChange}
-            required
-           />
-      </label>
-      <label className={css.label}>
-        Password
-           <input
-             type="password"
-             name="password"
-               value={form.password}
-             onChange={handleChange}
-            required
-           />
-      </label>
-      <button type="submit">Log In</button>
+  const handleMouseDownPassword = ( event
+  /*   event: React.MouseEvent<HTMLButtonElement> */
+  ) => {
+    event.preventDefault();
+  };
+
+
+    return (
+    <form className={css.container } action="" onSubmit={handleSubmit}>
+    
+      <TextField
+        fullWidth
+        label="Email"
+        id="email"
+        name="email"
+        value={form.email}
+        onChange={handleChange}
+        placeholder="Enter your email..."
+        required
+      />
+      <FormControl fullWidth required variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? 'text' : 'password'}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          placeholder="Enter your password..."
+        />
+      </FormControl>
+       <Button variant="outlined" type="submit">
+        Register
+      </Button> 
     </form>
   );
 };
     
 
 export default LoginForm;
+ 
+
+/* Ivan Obuxanich
+  ivan.obuxanich@gmail.com   */

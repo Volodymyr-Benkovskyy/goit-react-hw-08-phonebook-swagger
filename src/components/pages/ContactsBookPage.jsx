@@ -5,21 +5,18 @@ import ContactList from "components/ContactList/ContactList";
 import Filter from "components/Filter/Filter";
 import { useEffect } from "react";
 import { getContacts} from "components/redux/contacts/contactsOperation";
-import {  useDispatch} from "react-redux"; 
+import {  useDispatch, useSelector} from "react-redux"; 
 //import { selectorError, selectorIsLoading } from "components/redux/contacts/selectors";
 import Loader from "components/Loader/Loader";
+import { selectorIsLoading } from "components/redux/contacts/selectors";
 //import Loader from "components/Loader/Loader";
 //import { isContactsExist } from "components/redux/contacts/selectors";
 //import { isContactsExist } from "components/redux/contacts/selectors";
 
 
-
-
 const ContactsBookPage = () => {
-
-     const dispatch = useDispatch();
-     //const error = useSelector(selectorError)
-    
+ const isLoading = useSelector(selectorIsLoading)
+  const dispatch = useDispatch();
     
   useEffect(() => {
   dispatch(getContacts())
@@ -28,7 +25,7 @@ const ContactsBookPage = () => {
 
    return (
      <>
-         <Loader>
+         <Loader loading={isLoading }>
            <h1 style={{ textAlign: "center" }}>Phonebook</h1>
           <ContactForm />
           <Filter />
@@ -37,9 +34,8 @@ const ContactsBookPage = () => {
          </Loader>
     </>
   
-  )
-      
- 
+  ) 
+    
 };
 
 export default ContactsBookPage;

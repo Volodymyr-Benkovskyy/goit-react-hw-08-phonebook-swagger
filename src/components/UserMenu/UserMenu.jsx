@@ -3,14 +3,17 @@ import css from './UserMenu.module.css';
 import { selectName } from 'components/redux/auth/authselector';
 import { logOut } from 'components/redux/auth/authOperation';
 import { NavLink } from 'react-router-dom';
+//import { useEffect } from 'react';
 
-export const UserMenu = () => {
+const UserMenu = ({name}) => {
   const dispatch = useDispatch();
- 
-const userName = useSelector(selectName)
+ const userName = useSelector(selectName)
+  
+  
+
   return (
     <div className={css.wrapper}>
-          <p className={css.username}>Welcome {userName}</p>
+          <p className={css.username}>Welcome {userName.name}</p>
       <NavLink
         className={css.username}
          onClick={() => dispatch(logOut())}>
@@ -21,7 +24,7 @@ const userName = useSelector(selectName)
   );
 };
 
-
+export default UserMenu;
 
 /* export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 

@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
+import { selectisIsAuth } from 'components/redux/auth/authselector';
+import { useSelector } from 'react-redux';
 
 
 export const Navigation = () => {
-
+const isAuth = useSelector(selectisIsAuth);
   return (
     <nav> 
       
@@ -11,10 +13,10 @@ export const Navigation = () => {
         Home
       </NavLink> 
       
-        <NavLink className={css.link} to="/contacts">
+        {isAuth && <NavLink className={css.link} to="/contacts">
           Contacts Book
         </NavLink>
-     
+     }
     </nav>
   );
 };
