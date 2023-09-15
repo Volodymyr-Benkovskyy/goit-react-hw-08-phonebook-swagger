@@ -29,7 +29,8 @@ const LoginForm = () => {
      const { name, value } = event.target;
      setForm((prev) => ({ ...prev, [name]: value }))
     
-   };
+  }; 
+  
 
    const handleSubmit = (event) => {
      event.preventDefault();
@@ -41,17 +42,14 @@ const LoginForm = () => {
     // Функція для відображення/приховування пароля
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
-  const handleMouseDownPassword = ( event
-  /*   event: React.MouseEvent<HTMLButtonElement> */
-  ) => {
+  const handleMouseDownPassword = ( event) => {
     event.preventDefault();
   };
-
 
     return (
     <form className={css.container } action="" onSubmit={handleSubmit}>
     
-      <TextField
+        <TextField 
         fullWidth
         label="Email"
         id="email"
@@ -60,8 +58,10 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder="Enter your email..."
         required
+      
       />
-      <FormControl fullWidth required variant="outlined">
+        <FormControl 
+        required variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
@@ -96,5 +96,5 @@ const LoginForm = () => {
 export default LoginForm;
  
 
-/* Ivan Obuxanich
-  ivan.obuxanich@gmail.com   */
+
+

@@ -13,7 +13,7 @@ const UserMenu = ({name}) => {
 
   return (
     <div className={css.wrapper}>
-          <p className={css.username}>Welcome {userName.name}</p>
+          <p className={css.user}>Welcome {userName.name}</p>
       <NavLink
         className={css.username}
          onClick={() => dispatch(logOut())}>
