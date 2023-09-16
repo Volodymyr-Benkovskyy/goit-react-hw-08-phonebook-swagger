@@ -26,6 +26,7 @@
   padding: 12px;
   font-weight: 700;
   color: #0097ff;
+  text-transform: capitalize;
 }
 
 .active {

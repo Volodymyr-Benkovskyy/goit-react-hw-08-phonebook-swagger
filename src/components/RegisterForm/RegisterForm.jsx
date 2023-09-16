@@ -23,28 +23,31 @@ const RegisterForm = () => {
      password: "",
  });
    
-     const handleChange = (event) => {
+      const handleChange = (event) => {
      const { name, value } = event.target;
      setForm((prev) => ({ ...prev, [name]: value }))
    };
 
+  
+  
    const handleSubmit = (event) => {
      event.preventDefault();
-     console.log(form);
+   
      dispatch(registerOperation(form))
     setForm({
     name: "",
     email: "",
     password: "",
   });
-    };
+    }; 
+  
+  
+
    
   // Функція для відображення/приховування пароля
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
-  const handleMouseDownPassword = ( event
-  /*   event: React.MouseEvent<HTMLButtonElement> */
-  ) => {
+  const handleMouseDownPassword = ( event ) => {
     event.preventDefault();
   };
 
