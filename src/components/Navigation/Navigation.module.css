@@ -3,13 +3,9 @@
   text-decoration: none;
   padding: 12px;
   font-weight: 700;
-  color: blue;
+  color: #0097ff;
 }
 
 .link:hover {
   color: white;
-}
-
-.link.active {
-  color: #e84a5f;
 }

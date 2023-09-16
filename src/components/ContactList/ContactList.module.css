@@ -1,5 +1,5 @@
 .contactList {
-  width: 370px;
+  width: 50%;
   padding-left: 0;
   margin-top: 10px;
   margin-left: auto;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #0097ff;
 }
 
 .contactBtnDel {
@@ -22,5 +22,5 @@
   border-radius: 3px;
   border: none;
   background-color: white;
-  color: blue;
+  color: #0097ff;
 }
