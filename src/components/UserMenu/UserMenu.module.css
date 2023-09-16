@@ -5,6 +5,7 @@
 }
 
 .username {
+  margin: 0;
   font-weight: 700;
   display: inline-block;
   text-decoration: none;
@@ -18,10 +19,16 @@
 }
 
 .user {
+  margin: 0;
   font-weight: 700;
   display: inline-block;
   text-decoration: none;
   padding: 12px;
   font-weight: 700;
   color: #0097ff;
+}
+
+.active {
+  color: white;
+  border-bottom: 1px solid white;
 }

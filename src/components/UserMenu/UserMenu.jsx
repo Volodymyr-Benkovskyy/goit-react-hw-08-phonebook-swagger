@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './UserMenu.module.css';
-import { selectName } from 'components/redux/auth/authselector';
+import { selectName, } from 'components/redux/auth/authselector';
 import { logOut } from 'components/redux/auth/authOperation';
 import { NavLink } from 'react-router-dom';
+
 //import { useEffect } from 'react';
 
-const UserMenu = ({name}) => {
+const UserMenu = () => {
   const dispatch = useDispatch();
  const userName = useSelector(selectName)
   
+ 
   
 
   return (
