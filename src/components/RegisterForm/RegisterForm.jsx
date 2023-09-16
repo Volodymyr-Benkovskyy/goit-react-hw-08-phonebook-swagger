@@ -60,6 +60,7 @@ const RegisterForm = () => {
         onChange={handleChange}
         placeholder="Enter your name..."
         required
+        className={css.textfield}
       />
       <TextField
         fullWidth
@@ -70,19 +71,23 @@ const RegisterForm = () => {
         onChange={handleChange}
         placeholder="Enter your email..."
         required
+         className={css.textfield}
       />
       <FormControl fullWidth required variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
+           className={css.textfield}
           id="outlined-adornment-password"
           type={showPassword ? 'text' : 'password'}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
+               
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge="end"
+                 
               >
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
@@ -95,7 +100,9 @@ const RegisterForm = () => {
           placeholder="Enter your password..."
         />
       </FormControl>
-       <Button variant="outlined" type="submit">
+      <Button
+         className={css.textfield}
+        variant="outlined" type="submit">
         Register
       </Button> 
     </form>

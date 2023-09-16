@@ -62,12 +62,13 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder="Enter your email..."
         required
-      
+         className={css.textfield}
       />
         <FormControl 
         required variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-        <OutlinedInput
+          <OutlinedInput
+             className={css.textfield}
           id="outlined-adornment-password"
           type={showPassword ? 'text' : 'password'}
           endAdornment={
