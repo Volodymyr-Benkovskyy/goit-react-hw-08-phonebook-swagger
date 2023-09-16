@@ -91,7 +91,7 @@ const LoginForm = () => {
         />
       </FormControl>
        <Button variant="outlined" type="submit">
-        Register
+        Login Page
       </Button> 
     </form>
   );
