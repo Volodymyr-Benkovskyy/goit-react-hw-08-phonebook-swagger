@@ -26,14 +26,17 @@ const RegisterForm = () => {
      const handleChange = (event) => {
      const { name, value } = event.target;
      setForm((prev) => ({ ...prev, [name]: value }))
-    
    };
 
    const handleSubmit = (event) => {
      event.preventDefault();
      console.log(form);
      dispatch(registerOperation(form))
-    
+    setForm({
+    name: "",
+    email: "",
+    password: "",
+  });
     };
    
   // Функція для відображення/приховування пароля

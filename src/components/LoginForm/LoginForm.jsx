@@ -36,7 +36,11 @@ const LoginForm = () => {
      event.preventDefault();
      console.log(form);
      dispatch(logInOperation(form))
-    
+       setForm({
+    name: "",
+    email: "",
+    password: "",
+  });
   };
   
     // Функція для відображення/приховування пароля

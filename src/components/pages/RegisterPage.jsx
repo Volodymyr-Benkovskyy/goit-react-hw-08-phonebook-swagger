@@ -4,7 +4,7 @@ const RegisterPage = () => {
  
   return (
     <>
-      <h1 style={{ textAlign: "center", color:"blue"}}>Register Page</h1>
+      <h1 style={{ textAlign: "center", margin:"60px 0"}}>Register Page</h1>
       <RegisterForm/>
     </>
   );
