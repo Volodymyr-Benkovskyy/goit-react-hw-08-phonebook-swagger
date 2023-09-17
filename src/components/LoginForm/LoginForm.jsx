@@ -1,5 +1,5 @@
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./LoginForm.module.css";
 import { logInOperation } from "components/redux/auth/authOperation";
 import { useState } from "react";
@@ -14,12 +14,14 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
+import { selectError } from "components/redux/auth/authselector";
 
 
 const LoginForm = () => {
+
    const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
-  
+    const error = useSelector(selectError)
    const [form, setForm] = useState({
      email: "",
      password: "",
@@ -32,16 +34,29 @@ const LoginForm = () => {
   }; 
   
 
-   const handleSubmit = (event) => {
-     event.preventDefault();
-     console.log(form);
-     dispatch(logInOperation(form))
-       setForm({
-    name: "",
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+   dispatch(logInOperation(form));
+
+ /*  const errorMessag = error; */
+
+  
+ /*    if (error !== null) {
+      alert(`Помилка під час входу Email ${form.email} password ${form.password}`);
+  } */
+  
+    setTimeout(() => {
+    if (error !== null) {
+      alert(`Помилка під час входу Email ${form.email} password ${form.password}`);
+    }
+  },0);  
+ 
+  setForm({
     email: "",
     password: "",
   });
-  };
+};
   
     // Функція для відображення/приховування пароля
   const handleClickShowPassword = () => setShowPassword(show => !show);
