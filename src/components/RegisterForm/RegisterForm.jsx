@@ -1,6 +1,6 @@
 import css from './RegisterForm.module.css';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
@@ -13,11 +13,11 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import { registerOperation } from 'components/redux/auth/authOperation';
-import { selectError } from 'components/redux/auth/authselector';
+
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectError)
+ 
   const [showPassword, setShowPassword] = React.useState(false);
 
   const [form, setForm] = useState({
@@ -36,13 +36,6 @@ const handleSubmit = (event) => {
 
   dispatch(registerOperation(form));
     
-      if (error !== null) {
-    alert(`Помилка під час реєстрації: ${form.name}i ${form.email}`); 
-  } else {
-    alert('Реєстрація пройшла успішно!');
-  }
-
-
     setForm({
       name: "",
       email: "",
