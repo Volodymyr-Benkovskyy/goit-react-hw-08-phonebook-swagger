@@ -36,7 +36,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = payload;
         setTimeout(() => {
-          alert(' Помилка: ');
+          alert('Register error');
         }, 1000);
       })
       .addCase(logInOperation.pending, state => {
@@ -54,7 +54,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = payload;
         setTimeout(() => {
-          alert(' Помилка: ');
+          alert('Login error');
         }, 0);
       })
       .addCase(logOut.pending, state => {
