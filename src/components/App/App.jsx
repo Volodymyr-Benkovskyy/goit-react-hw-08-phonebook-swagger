@@ -9,7 +9,7 @@ import ContactsBookPage from "components/pages/ContactsBookPage";
 import { useDispatch} from "react-redux";
 import { useEffect } from "react";
 import { refreshUserOperation } from "components/redux/auth/authOperation";
-//import { selectIsAuth } from "components/redux/auth/authselector";
+
 import PrivateRoute from "components/PrivateRoute/PrivetRoute";
 import PublicRoute from "components/PublicRoute/PublicRoute";
 
@@ -47,7 +47,7 @@ export default App;
   
 
       
-// adding a class of isActive
+
        
         
 
